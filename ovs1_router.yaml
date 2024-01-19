@@ -1,0 +1,12 @@
+vlans:
+    100:
+        faucet_mac: "00:00:00:00:01:01"
+        faucet_vips: ["192.168.100.1/24"]
+        faucet_unregistered_flood: True
+routers:
+    router-1:
+        vlans: [100]
+        bgp:
+            as: 65001
+            routerid: 192.168.100.1
+        bgp_neighbor_addresses: ["192.168.200.2"]

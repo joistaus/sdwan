@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  ovs1_router:
+    image: faucet/gauge
+    command: faucet-gauge
+    networks:
+      - ovs1
+    environment:
+      FAUCET_GAUGE_CONFIG: /etc/faucet/gauge.yaml
+
+  ovs2_router:
+    image: faucet/gauge
+    command: faucet-gauge
+    networks:
+      - ovs2
+    environment:
+      FAUCET_GAUGE_CONFIG: /etc/faucet/gauge.yaml
+
+  ovs1_host1:
+    image: ubuntu
+    command: tail -f /dev/null
+    networks:
+      - ovs1
+
+  ovs1_host2:
+    image: ubuntu
+    command: tail -f /dev/null
+    networks:
+      - ovs1
+
+  ovs2_host1:
+    image: ubuntu
+    command: tail -f /dev/null
+    networks:
+      - ovs2
+
+  ovs2_host2:
+    image: ubuntu
+    command: tail -f /dev/null
+    networks:
+      - ovs2
+
+networks:
+  ovs1:
+  ovs2:
